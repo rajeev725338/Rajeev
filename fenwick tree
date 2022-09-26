@@ -1,0 +1,19 @@
+def fenwicktree(a,n):
+  b=[0]*(n+1)
+  for r in range(n):
+    update(b,a[r],r,n)
+  return b
+def update(b,v,i,n):
+  i+=1
+  while i<n+1:
+    b[i]+=v
+    i+=(i&-i)
+def getsum(i,b,n):
+  ans=0
+  i+=1
+  while i>0:
+    ans+=b[i]
+    i^=(i&-i)
+  return ans
+def givesum(i,j,b,n):
+  return getsum(j,b,n)-getsum(i-1,b,n)
